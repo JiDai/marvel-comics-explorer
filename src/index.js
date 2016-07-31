@@ -11,6 +11,7 @@ import thunkMiddleware from 'redux-thunk';
 
 import App from './containers/App'
 import Dashboard from './containers/Dashboard'
+import Explorer from './containers/Explorer'
 import reducer from './reducers'
 
 
@@ -31,8 +32,9 @@ const history = syncHistoryWithStore(browserHistory, store)
 ReactDOM.render(
     <Provider store={store}>
         <Router history={history}>
-            <Route path='/' component={App}>
+            <Route path="/" component={App}>
                 <IndexRoute component={Dashboard} />
+                <Route path="/explorer" component={Explorer} />
             </Route>
         </Router>
     </Provider>, document.getElementById('root')

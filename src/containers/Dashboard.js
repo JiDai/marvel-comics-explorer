@@ -1,18 +1,18 @@
 /**
  * Created by jd on 26/07/16.
  */
-import React from 'react';
-import {Component} from 'react';
-import {connect} from 'react-redux';
+import React from 'react'
+import {Component} from 'react'
+import {connect} from 'react-redux'
 
 import fe from '../actions/dashboard'
 
 export default class Dashboard extends Component {
-    componentWillMount() {
+    componentWillMount () {
         this.props.dispatch(fe())
     }
 
-    render() {
+    render () {
         return (
             <div onClick={this.handleClick}>
                 <h1>Dashboard! {this.props.realtorViewsCount ? this.props.realtorViewsCount : '...'}</h1>
@@ -22,9 +22,10 @@ export default class Dashboard extends Component {
     }
 }
 
+// Link state to props
 Dashboard = connect(
     state => {
-        // Why path is state.reducer.dashboard... and not state.realtorViewsCount
+        // Why path is state.reducer.dashboard... and not state.realtorViewsCount ?
         return {realtorViewsCount: state.reducer.dashboard.realtorViewsCount}
     }
-)(Dashboard);
+)(Dashboard)
