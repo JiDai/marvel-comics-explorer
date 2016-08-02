@@ -1,23 +1,22 @@
-
-import {RECEIVE_REALTOR_VIEWS, REQUEST_REALTOR_VIEWS} from '../actions/dashboard'
+import {RECEIVE_COMICS_COUNT, REQUEST_COMICS_COUNT} from '../actions/dashboard'
 
 const initialState = {
     isFetching: false,
-    realtorViewsCount: null
+    comicsCount: null
 }
 
-export default function realtorViews(state = initialState, action) {
+export default function comicsCount (state = initialState, action) {
     switch (action.type) {
-        case 'REQUEST_REALTOR_VIEWS':
+        case REQUEST_COMICS_COUNT:
             return {
                 ...state,
-                isFetching: true,
+                isFetching: true
             }
-        case 'RECEIVE_REALTOR_VIEWS':
+        case RECEIVE_COMICS_COUNT:
             return {
                 ...state,
                 isFetching: false,
-                realtorViewsCount: action.viewsCount
+                comicsCount: action.comicsCount
             }
         default:
             return state

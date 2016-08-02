@@ -29,17 +29,22 @@ module.exports = {
         })
     ],
     module: {
-        loaders: [{
-            test: /\.jsx?$/,
-            loaders: ['react-hot', 'babel'],
-            exclude: /node_modules/,
-            include: path.join(__dirname, '..', 'src')
-        }, {
-            test: /\.css$/,
-            loader: ExtractTextPlugin.extract('style-loader', 'css-loader')
-        }, {
-            test: /\.(png|woff|woff2|eot|ttf|svg)$/, loader: 'url-loader?limit=200000'
-        }]
+        loaders: [
+            {
+                test: /\.scss$/,
+                loaders: ['style', 'css', 'sass']
+            },
+            {
+                test: /\.jsx?$/,
+                loaders: ['react-hot', 'babel'],
+                exclude: /node_modules/,
+                include: path.join(__dirname, '..', 'src')
+            }, {
+                test: /\.css$/,
+                loader: ExtractTextPlugin.extract('style-loader', 'css-loader')
+            }, {
+                test: /\.(png|woff|woff2|eot|ttf|svg)$/, loader: 'url-loader?limit=200000'
+            }]
     },
     resolve: {
         extensions: ['', '.react.js', '.js', '.jsx'],

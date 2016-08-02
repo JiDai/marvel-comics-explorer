@@ -1,0 +1,55 @@
+
+body {
+    font-size: 16px;
+}
+
+.sidebar {
+    background: #fafafa;
+}
+
+.h1 {
+    font-size: 2rem;
+}
+
+.h2 {
+    font-size: 1.6rem;
+}
+
+.no-item {
+    background: #e2e2e2;
+    color: #a8a8a8;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}
+
+.comic-list-item {
+    overflow: auto;
+
+    a {
+        overflow: auto;
+        padding: 1rem;
+    }
+}
+
+    .comic-list-item__title {
+        margin-bottom: 1rem;
+    }
+
+    .comic-list-item__picture {
+        float: left;
+        margin-right: 1rem;
+        max-width: 100px;
+        max-height: 100px;
+    }
+
+    .comic-list-item__description {
+        display: -webkit-box;
+        line-height: normal;
+        font-size: .8rem;
+        max-height: 100px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        -webkit-line-clamp: 7;
+        -webkit-box-orient: vertical;
+    }

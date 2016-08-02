@@ -1,31 +1,38 @@
 /**
  * Created by jd on 26/07/16.
  */
-import React from 'react'
-import {Component} from 'react'
+import React, {Component, PropTypes} from 'react'
 import {connect} from 'react-redux'
 
 import fe from '../actions/dashboard'
+import {changeTitle} from '../actions/navigation'
 
 export default class Dashboard extends Component {
     componentWillMount () {
         this.props.dispatch(fe())
+        this.props.dispatch(changeTitle('Welcome'))
     }
 
     render () {
         return (
-            <div onClick={this.handleClick}>
-                <h1>Dashboard! {this.props.realtorViewsCount ? this.props.realtorViewsCount : '...'}</h1>
+            <div className="small-12 grid-content" onClick={this.handleClick}>
+                <h2 className="h2">Welcome! </h2>
+                <p>We have <strong>{this.props.comicsCount ? this.props.comicsCount : '...'}</strong>
+                    commics in lists.</p>
                 {this.props.children}
             </div>
-        );
+        )
     }
 }
 
+Dashboard.propTypes = {
+    comicsCount: PropTypes.number
+}
+
 // Link state to props
-Dashboard = connect(
+export default connect(
     state => {
         // Why path is state.reducer.dashboard... and not state.realtorViewsCount ?
-        return {realtorViewsCount: state.reducer.dashboard.realtorViewsCount}
+        return {comicsCount: state.reducer.dashboard.comicsCount}
     }
 )(Dashboard)

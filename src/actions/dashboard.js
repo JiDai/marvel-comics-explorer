@@ -1,21 +1,21 @@
 /**
  * Created by jd on 27/07/16.
  */
-export const RECEIVE_REALTOR_VIEWS = 'RECEIVE_REALTOR_VIEWS'
-export const REQUEST_REALTOR_VIEWS = 'REQUEST_REALTOR_VIEWS'
+export const RECEIVE_COMICS_COUNT = 'RECEIVE_COMICS_COUNT'
+export const REQUEST_COMICS_COUNT = 'REQUEST_COMICS_COUNT'
 
 import marvel from '../MarvelClient'
 
 function requestRealtorViews () {
     return {
-        type: REQUEST_REALTOR_VIEWS
+        type: REQUEST_COMICS_COUNT
     }
 }
 
 function receiveRealtorViews (json) {
     return {
-        type: RECEIVE_REALTOR_VIEWS,
-        viewsCount: json.total
+        type: RECEIVE_COMICS_COUNT,
+        comicsCount: json.total
     }
 }
 
@@ -27,7 +27,7 @@ export default function fetchRealtorViews () {
                 console.log('err : ', err)
                 return
             }
-            return dispatch(receiveRealtorViews(body.data));
+            return dispatch(receiveRealtorViews(body.data))
         })
     }
 }

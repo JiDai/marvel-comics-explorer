@@ -1,6 +1,6 @@
 import React, {
     Component,
-    PropTypes,
+    PropTypes
 } from 'react'
 
 import ComicsListItem from './ComicsListItem'
@@ -9,18 +9,22 @@ import ComicsListItem from './ComicsListItem'
 class ComicsList extends Component {
     render () {
         return (
-            <div>
-                {this.props.comics && this.props.comics.map(comic => {
-                    return (
-                        <ComicsListItem key={comic.id} {...comic} />
-                    )
-                })}
+            <div className="block-list">
+                <ul className="">
+                    {this.props.comics && this.props.comics.map(comic => {
+                        return (
+                            <ComicsListItem key={comic.id} {...comic} />
+                        )
+                    })}
+                </ul>
             </div>
-        );
+        )
     }
 }
 
-ComicsList.propTypes = {}
+ComicsList.propTypes = {
+    comics: PropTypes.array
+}
 ComicsList.defaultProps = {}
 
-export default ComicsList;
+export default ComicsList
