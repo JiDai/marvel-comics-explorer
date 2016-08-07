@@ -11,12 +11,15 @@ import 'foundation-apps/scss/foundation.scss'
 import 'scss/main.scss'
 
 import Sidebar from '../components/Sidebar'
+import TopBar from '../components/TopBar'
 
 
 class App extends Component {
     render () {
         return (
             <div className="grid-frame vertical">
+                {this.props.topbarMessage &&
+                    <TopBar type={this.props.topbarMessage.type}>{this.props.topbarMessage.title}</TopBar>}
                 <div className="primary title-bar">
                     <h1 className="h1"><a href="/">Marvel Comics Explorer / {this.props.title}</a></h1>
                 </div>
@@ -31,13 +34,16 @@ class App extends Component {
 }
 
 App.propTypes = {
-    title: PropTypes.string
+    title: PropTypes.string,
+    topbarMessage: PropTypes.object
 }
 
 // Link state to props
 export default connect(
     state => {
-        // Why path is state.reducer.dashboard... and not state.realtorViewsCount ?
-        return {title: state.reducer.navigation.title}
+        return {
+            title: state.reducer.navigation.title,
+            topbarMessage: state.reducer.navigation.topbarMessage
+        }
     }
 )(App)

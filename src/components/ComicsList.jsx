@@ -9,14 +9,16 @@ import ComicsListItem from './ComicsListItem'
 class ComicsList extends Component {
     render () {
         return (
-            <div className="block-list">
-                <ul className="">
-                    {this.props.comics && this.props.comics.map(comic => {
-                        return (
-                            <ComicsListItem key={comic.id} {...comic} />
-                        )
-                    })}
-                </ul>
+            <div className="grid-content">
+                <div className="block-list">
+                    <ul className="">
+                        {this.props.comics && this.props.comics.map(comic => {
+                            return (
+                                <ComicsListItem key={comic.id} {...comic} />
+                            )
+                        })}
+                    </ul>
+                </div>
             </div>
         )
     }

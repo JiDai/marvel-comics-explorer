@@ -14,11 +14,11 @@ export default class Dashboard extends Component {
     }
 
     render () {
+        let count = this.props.comicsCount ? this.props.comicsCount : '...'
         return (
             <div className="small-12 grid-content" onClick={this.handleClick}>
                 <h2 className="h2">Welcome! </h2>
-                <p>We have <strong>{this.props.comicsCount ? this.props.comicsCount : '...'}</strong>
-                commics in lists.</p>
+                <p>We have <strong>{count}</strong> comics in lists.</p>
                 {this.props.children}
             </div>
         )

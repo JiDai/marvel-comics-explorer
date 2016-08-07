@@ -1,14 +1,20 @@
 /**
  * Created by jd on 27/07/16.
  */
+import {
+    displayTopbarMessage,
+    hideTopbarMessage
+} from '../actions/navigation'
+
+import marvel from '../MarvelClient'
+
+
 export const REQUEST_COMICS = 'REQUEST_COMICS'
 export const RECEIVE_COMICS = 'RECEIVE_COMICS'
 export const RECEIVE_COMICS_FAILED = 'RECEIVE_COMICS_FAILED'
 export const REQUEST_COMIC = 'REQUEST_COMIC'
 export const RECEIVE_COMIC = 'RECEIVE_COMIC'
 export const RECEIVE_COMIC_FAILED = 'RECEIVE_COMIC_FAILED'
-
-import marvel from '../MarvelClient'
 
 function requestList () {
     return {
@@ -36,7 +42,11 @@ export function fetchList () {
         marvel('comics', {}, (err, body) => {
             if (err) {
                 console.log('err : ', err)
+                dispatch(receiveListFailed())
+                dispatch(displayTopbarMessage('Unable to connect to internet', 'error'))
                 return
+            } else {
+                dispatch(hideTopbarMessage())
             }
             return dispatch(receiveList(body.data))
         })
@@ -50,7 +60,10 @@ export function fetchSearch (titleStartsWith) {
             if (err) {
                 console.log('err : ', err)
                 dispatch(receiveListFailed())
+                dispatch(displayTopbarMessage('Unable to connect to internet', 'error'))
                 return
+            } else {
+                dispatch(hideTopbarMessage())
             }
             return dispatch(receiveList(body.data))
         })
@@ -85,7 +98,10 @@ export function fetchComic (id) {
             if (err) {
                 console.log('err : ', err)
                 dispatch(receiveComicFailed())
+                dispatch(displayTopbarMessage('Unable to connect to internet', 'error'))
                 return
+            } else {
+                dispatch(hideTopbarMessage())
             }
             return dispatch(receiveComic(body.data))
         })

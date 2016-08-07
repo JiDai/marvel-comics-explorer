@@ -17,13 +17,17 @@ class SearchField extends Component {
 
     render () {
         return (
-            <input type="search" placeholder="Search by name..." onKeyUp={this._onKeyUp} />
+            <input type="search"
+                placeholder="Search by name..."
+                onKeyUp={this._onKeyUp}
+                className={this.props.className} />
         )
     }
 }
 
 SearchField.propTypes = {
-    handleSearch: PropTypes.function
+    handleSearch: PropTypes.function,
+    className: PropTypes.function
 }
 SearchField.defaultProps = {}
 

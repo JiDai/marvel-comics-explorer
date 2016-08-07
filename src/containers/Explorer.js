@@ -35,14 +35,16 @@ class Explorer extends Component {
     }
 
     _handleSearch (query) {
-        this.props.dispatch(fetchSearch(query))
+        if (query) {
+            this.props.dispatch(fetchSearch(query))
+        }
     }
 
     render () {
         let child,
             list
 
-        child = <NoSelectedItem>Aucun comic sélectionné</NoSelectedItem>
+        child = <NoSelectedItem>Please select a comic in the list</NoSelectedItem>
         if (this.props.isDetailFetching) {
             child = <NoSelectedItem>Pending</NoSelectedItem>
         } else if (this.props.params.comicId && this.props.selectedComic) {
@@ -52,17 +54,21 @@ class Explorer extends Component {
         list = <ComicsListEmpty />
         if (this.props.isListFetching) {
             list = <NoSelectedItem>Pending</NoSelectedItem>
-        } else if (this.props.comicsList) {
+        } else if (this.props.comicsList && this.props.comicsList.length > 0) {
             list = <ComicsList comics={this.props.comicsList} />
         }
 
         return (
             <div className="small-12 medium-9 grid-block">
-                <div className="small-12 medium-6 grid-content">
-                    <SearchField handleSearch={this._handleSearch} />
-                    {list}
+                <div className="comic-list small-12 medium-6 grid-block vertical">
+                    <div className="grid-block shrink">
+                        <SearchField className="comic-list__searchfield" handleSearch={this._handleSearch} />
+                    </div>
+                    <div className="grid-block">
+                        {list}
+                    </div>
                 </div>
-                <div className="small-12 medium-6 grid-block">
+                <div className="comic-detail small-12 medium-6 grid-block">
                     {child}
                 </div>
             </div>
