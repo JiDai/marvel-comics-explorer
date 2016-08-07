@@ -7,37 +7,60 @@ import React, {
 } from 'react'
 import {connect} from 'react-redux'
 
-import {fetchData, fetchComicData} from '../actions/explorer'
+import {fetchList, fetchComic, fetchSearch} from '../actions/explorer'
 import {changeTitle} from '../actions/navigation'
 import ComicsList from '../components/ComicsList'
+import ComicsListEmpty from '../components/ComicsListEmpty'
 import ComicDetail from '../components/ComicDetail'
+import SearchField from '../components/SearchField'
 import NoSelectedItem from '../components/NoSelectedItem'
 
 
 class Explorer extends Component {
+    constructor () {
+        super()
+        // MEMO 01
+        this._handleSearch = this._handleSearch.bind(this)
+    }
+
     componentWillMount () {
-        this.props.dispatch(fetchData())
+        this.props.dispatch(fetchList())
         this.props.dispatch(changeTitle('Comics'))
     }
 
     componentWillReceiveProps (nextProps) {
         if (nextProps.params.comicId && nextProps.params.comicId !== this.props.params.comicId) {
-            this.props.dispatch(fetchComicData(nextProps.params.comicId))
+            this.props.dispatch(fetchComic(nextProps.params.comicId))
         }
     }
 
+    _handleSearch (query) {
+        this.props.dispatch(fetchSearch(query))
+    }
+
     render () {
-        let child = <NoSelectedItem>Aucun comic sélectionné</NoSelectedItem>
-        if (this.props.isFetching) {
+        let child,
+            list
+
+        child = <NoSelectedItem>Aucun comic sélectionné</NoSelectedItem>
+        if (this.props.isDetailFetching) {
             child = <NoSelectedItem>Pending</NoSelectedItem>
         } else if (this.props.params.comicId && this.props.selectedComic) {
             child = <ComicDetail comic={this.props.selectedComic} />
         }
 
+        list = <ComicsListEmpty />
+        if (this.props.isListFetching) {
+            list = <NoSelectedItem>Pending</NoSelectedItem>
+        } else if (this.props.comicsList) {
+            list = <ComicsList comics={this.props.comicsList} />
+        }
+
         return (
             <div className="small-12 medium-9 grid-block">
                 <div className="small-12 medium-6 grid-content">
-                    <ComicsList comics={this.props.comicsList} />
+                    <SearchField handleSearch={this._handleSearch} />
+                    {list}
                 </div>
                 <div className="small-12 medium-6 grid-block">
                     {child}
@@ -47,19 +70,23 @@ class Explorer extends Component {
     }
 }
 
+// MEMO 03
 Explorer.propTypes = {
     comicsList: PropTypes.array,
     selectedComic: PropTypes.object,
-    isFetching: PropTypes.boolean
+    isListFetching: PropTypes.boolean,
+    isDetailFetching: PropTypes.boolean
 }
 
 // Link state to props
 export default connect(
-    (state, ownProps) => {
+    (state/*, ownProps*/) => {
         return {
             comicsList: state.reducer.explorer.comicsList,
             selectedComic: state.reducer.explorer.comic,
-            isFetching: state.reducer.explorer.isFetching
+            isFetching: state.reducer.explorer.isFetching,
+            isListFetching: state.reducer.explorer.isListFetching,
+            isDetailFetching: state.reducer.explorer.isDetailFetching
         }
     }
 )(Explorer)

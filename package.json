@@ -34,6 +34,7 @@
     "babel-preset-react": "6.11.1",
     "babel-preset-stage-0": "6.5.0",
     "babel-preset-stage-1": "6.5.0",
+    "core-decorators": "0.12.3",
     "eslint-plugin-babel": "3.3.0",
     "extract-text-webpack-plugin": "1.0.1",
     "foundation-apps": "1.2.0",

@@ -1,12 +1,15 @@
 import {
-    RECEIVE_COMICS,
     REQUEST_COMICS,
+    RECEIVE_COMICS,
+    RECEIVE_COMICS_FAILED,
+    REQUEST_COMIC,
     RECEIVE_COMIC,
-    REQUEST_COMIC
+    RECEIVE_COMIC_FAILED
 } from '../actions/explorer'
 
 const initialState = {
-    isFetching: false,
+    isListFetching: false,
+    isDetailFetching: false,
     comicsList: null
 }
 
@@ -15,23 +18,35 @@ export default function comicsList (state = initialState, action) {
         case REQUEST_COMICS:
             return {
                 ...state,
-                isFetching: true
+                isListFetching: true
             }
         case RECEIVE_COMICS:
             return {
                 ...state,
-                isFetching: false,
+                isListFetching: false,
                 comicsList: action.comicsList
+            }
+        case RECEIVE_COMICS_FAILED:
+            return {
+                ...state,
+                isListFetching: false,
+                comicsList: null
             }
         case REQUEST_COMIC:
             return {
                 ...state,
-                isFetching: true
+                isDetailFetching: true
             }
         case RECEIVE_COMIC:
             return {
                 ...state,
-                isFetching: false,
+                isDetailFetching: false,
+                comic: action.comic
+            }
+        case RECEIVE_COMIC_FAILED:
+            return {
+                ...state,
+                isDetailFetching: false,
                 comic: action.comic
             }
         default:

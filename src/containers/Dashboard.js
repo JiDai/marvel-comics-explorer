@@ -18,7 +18,7 @@ export default class Dashboard extends Component {
             <div className="small-12 grid-content" onClick={this.handleClick}>
                 <h2 className="h2">Welcome! </h2>
                 <p>We have <strong>{this.props.comicsCount ? this.props.comicsCount : '...'}</strong>
-                    commics in lists.</p>
+                commics in lists.</p>
                 {this.props.children}
             </div>
         )
@@ -32,7 +32,7 @@ Dashboard.propTypes = {
 // Link state to props
 export default connect(
     state => {
-        // Why path is state.reducer.dashboard... and not state.realtorViewsCount ?
+        // MEMO 02
         return {comicsCount: state.reducer.dashboard.comicsCount}
     }
 )(Dashboard)
