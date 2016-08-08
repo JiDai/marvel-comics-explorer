@@ -13,4 +13,4 @@ Why path is state.reducer.dashboard.xxxx and not just state.xxxx ?
 
 ## 03
 
-Why specitfy proptypes, What is the gain ?
+Why specify proptypes, What is the gain ?
