@@ -2,23 +2,29 @@ import React, {
     Component,
     PropTypes
 } from 'react'
+import {Lightbox} from 'react-lightbox-component'
 
-import ComicImage from './ComicImage'
 import ComicImageHero from './ComicImageHero'
 import ComicProperty from './ComicProperty'
 
 
 class ComicDetail extends Component {
     render () {
+        var images = []
+        if (this.props.comic.images) {
+            images = this.props.comic.images.map((image, index) => {
+                return {
+                    title: '',
+                    src: image.path + '.' + image.extension,
+                    key: this.props.comic.id + '_image_' + index
+                }
+            })
+        }
         return (
             <div className="grid-content">
                 <ComicImageHero thumbnail={this.props.comic.thumbnail} />
-                <h3>
-                    {this.props.comic.title}
-                </h3>
-                <p>
-                    {this.props.comic.description}
-                </p>
+                <h3>{this.props.comic.title}</h3>
+                <p>{this.props.comic.description}</p>
                 <p>
                     {this.props.comic.digitalId ? <ComicProperty label="digitalId" value={this.props.comic.digitalId} /> : null}
                     {this.props.comic.issueNumber ? <ComicProperty label="issueNumber" value={this.props.comic.issueNumber} /> : null}
@@ -45,18 +51,8 @@ class ComicDetail extends Component {
                     })}
                 </p>
 
-                <p>
-                    <h5>Images</h5>
-                    {this.props.comic.images && this.props.comic.images.map((image, index) => {
-                        return (
-                            <a href={image.path + '.' + image.extension}
-                                key={this.props.comic.id + '_image_' + index}
-                                target="_blank">
-                                <ComicImage imageWidth="60" thumbnail={image} />
-                            </a>
-                        )
-                    })}
-                </p>
+                <h5>Images</h5>
+                <Lightbox images={images} />
             </div>
         )
     }

@@ -8,8 +8,9 @@ new WebpackDevServer(webpack(config), {
     publicPath: config.output.publicPath,
     historyApiFallback: true,
     hot: true,
+    noInfo: true,
     stats: {
-      colors: true
+        colors: true
     },
     // proxy: {
     //   '/': {
