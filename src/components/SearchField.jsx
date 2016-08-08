@@ -2,6 +2,7 @@ import React, {
     Component,
     PropTypes
 } from 'react'
+import ReactTooltip from 'react-tooltip'
 
 
 class SearchField extends Component {
@@ -17,10 +18,15 @@ class SearchField extends Component {
 
     render () {
         return (
-            <input type="search"
-                placeholder="Search by name..."
-                onKeyUp={this._onKeyUp}
-                className={this.props.className} />
+            <div className={this.props.className}>
+                <input type="search"
+                    data-tip="Type the first letters of a name"
+                    data-effect="solid"
+                    data-offset="{'top': -7}"
+                    placeholder="Search by name..."
+                    onKeyUp={this._onKeyUp} />
+                <ReactTooltip />
+            </div>
         )
     }
 }

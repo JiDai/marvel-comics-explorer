@@ -29,17 +29,22 @@ body {
     border-right: 1px solid #ccc;
 }
 
-    input.comic-list__searchfield {
-        margin: 0;
+    .comic-list__searchfield {
+        width: 100%;
 
-        &,
-        &:hover,
-        &:active,
-        &:focus {
-            border-top: 0;
-            border-right: 0;
-            border-left: 0;
+        input {
+            margin: 0;
+
+            &,
+            &:hover,
+            &:active,
+            &:focus {
+                border-top: 0;
+                border-right: 0;
+                border-left: 0;
+            }
         }
+
     }
 
     .comic-list__item {
