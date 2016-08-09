@@ -32,8 +32,8 @@ class SearchField extends Component {
 }
 
 SearchField.propTypes = {
-    handleSearch: PropTypes.function,
-    className: PropTypes.function
+    handleSearch: PropTypes.func,
+    className: PropTypes.string
 }
 SearchField.defaultProps = {}
 

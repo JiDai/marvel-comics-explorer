@@ -80,8 +80,8 @@ class Explorer extends Component {
 Explorer.propTypes = {
     comicsList: PropTypes.array,
     selectedComic: PropTypes.object,
-    isListFetching: PropTypes.boolean,
-    isDetailFetching: PropTypes.boolean
+    isListFetching: PropTypes.bool,
+    isDetailFetching: PropTypes.bool
 }
 
 // Link state to props
