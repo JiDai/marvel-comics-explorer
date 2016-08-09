@@ -26,6 +26,9 @@ class Explorer extends Component {
     componentWillMount () {
         this.props.dispatch(fetchList())
         this.props.dispatch(changeTitle('Comics'))
+        if (this.props.params.comicId) {
+            this.props.dispatch(fetchComic(this.props.params.comicId))
+        }
     }
 
     componentWillReceiveProps (nextProps) {
