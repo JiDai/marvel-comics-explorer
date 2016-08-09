@@ -2,10 +2,10 @@ import React, {
     Component,
     PropTypes
 } from 'react'
-import {Lightbox} from 'react-lightbox-component'
 
 import ComicImageHero from './ComicImageHero'
 import ComicProperty from './ComicProperty'
+import Gallery from './Gallery'
 
 
 class ComicDetail extends Component {
@@ -14,8 +14,8 @@ class ComicDetail extends Component {
         if (this.props.comic.images) {
             images = this.props.comic.images.map((image, index) => {
                 return {
-                    title: '',
                     src: image.path + '.' + image.extension,
+                    thumbnail: image.path + '.' + image.extension,
                     key: this.props.comic.id + '_image_' + index
                 }
             })
@@ -25,7 +25,7 @@ class ComicDetail extends Component {
                 <ComicImageHero thumbnail={this.props.comic.thumbnail} />
                 <h3>{this.props.comic.title}</h3>
                 <p>{this.props.comic.description}</p>
-                <p>
+                <div className="paragraph">
                     {this.props.comic.digitalId ? <ComicProperty label="digitalId" value={this.props.comic.digitalId.toString()} /> : null}
                     {this.props.comic.issueNumber ? <ComicProperty label="issueNumber" value={this.props.comic.issueNumber.toString()} /> : null}
                     {this.props.comic.variantDescription ? <ComicProperty label="variantDescription" value={this.props.comic.variantDescription} /> : null}
@@ -37,9 +37,9 @@ class ComicDetail extends Component {
                     {this.props.comic.issn ? <ComicProperty label="issn" value={this.props.comic.issn} /> : null}
                     {this.props.comic.format ? <ComicProperty label="format" value={this.props.comic.format} /> : null}
                     {this.props.comic.pageCount ? <ComicProperty label="pageCount" value={this.props.comic.pageCount.toString()} /> : null}
-                </p>
+                </div>
 
-                <p>
+                <div className="paragraph">
                     {this.props.comic.urls && this.props.comic.urls.map((url, index) => {
                         return (
                             <div>
@@ -49,10 +49,15 @@ class ComicDetail extends Component {
                             </div>
                         )
                     })}
-                </p>
+                </div>
 
                 <h5>Images</h5>
-                <Lightbox images={images} />
+                <div className="paragraph">
+                    <Gallery images={images}
+                        thumbnailWidth="60"
+                        thumbnailHeight="60"
+                    />
+                </div>
             </div>
         )
     }
