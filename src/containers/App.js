@@ -14,7 +14,7 @@ import Sidebar from '../components/Sidebar'
 import TopBar from '../components/TopBar'
 
 
-class App extends Component {
+export class App extends Component {
     render () {
         return (
             <div className="grid-frame vertical">

@@ -5,7 +5,8 @@
         "standard-react"
     ],
     "plugins": [
-        "babel"
+        "babel",
+        "mocha"
     ],
     "env": {
         "browser": true
