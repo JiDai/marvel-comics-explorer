@@ -15,6 +15,7 @@ import Explorer from './containers/Explorer'
 import ComicDetail from './components/ComicDetail'
 import reducer from './reducers'
 
+import './index.html'
 
 // Add the reducer to your store on the `routing` key
 const store = createStore(

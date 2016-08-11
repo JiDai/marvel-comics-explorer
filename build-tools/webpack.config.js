@@ -16,8 +16,8 @@ module.exports = {
         ]
     },
     output: {
-        path: path.join(__dirname, '..', 'dist'),
-        filename: 'app.js',
+        path: path.join(__dirname, '..', 'dist', 'static'),
+        filename: 'assets/app.js',
         publicPath: '/static'
     },
     plugins: [
@@ -31,6 +31,10 @@ module.exports = {
     module: {
         loaders: [
             {
+                test: /\.html$/,
+                loaders: ['file?name=[name].[ext]']
+            },
+            {
                 test: /\.scss$/,
                 loaders: ['style', 'css', 'sass']
             },
@@ -43,7 +47,8 @@ module.exports = {
                 test: /\.css$/,
                 loader: ExtractTextPlugin.extract('style-loader', 'css-loader')
             }, {
-                test: /\.(png|woff|woff2|eot|ttf|svg)$/, loader: 'url-loader?limit=200000'
+                test: /\.(png|woff|woff2|eot|ttf|svg)$/,
+                loader: 'url-loader?limit=200000'
             }]
     },
     resolve: {
