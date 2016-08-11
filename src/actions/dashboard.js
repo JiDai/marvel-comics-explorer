@@ -6,28 +6,28 @@ export const REQUEST_COMICS_COUNT = 'REQUEST_COMICS_COUNT'
 
 import marvel from '../MarvelClient'
 
-function requestRealtorViews () {
+function requestComicsCount () {
     return {
         type: REQUEST_COMICS_COUNT
     }
 }
 
-function receiveRealtorViews (json) {
+function receiveComicsCount (json) {
     return {
         type: RECEIVE_COMICS_COUNT,
         comicsCount: json.total
     }
 }
 
-export default function fetchRealtorViews () {
+export default function fetchComicsCount () {
     return function (dispatch) {
-        dispatch(requestRealtorViews())
+        dispatch(requestComicsCount())
         marvel('comics', {}, (err, body) => {
             if (err) {
                 console.log('err : ', err)
                 return
             }
-            return dispatch(receiveRealtorViews(body.data))
+            return dispatch(receiveComicsCount(body.data))
         })
     }
 }
